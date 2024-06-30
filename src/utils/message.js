@@ -1,12 +1,11 @@
-import {ElMessage} from 'element-ui';
+import {Message} from 'element-ui';
 
 const errorMessage = (msg) => {
-    return ElMessage({
+    Message({
         message: msg,
         type: 'error',
         customClass: '_fc-message-error',
-    });
-
+    })
 };
 
 export default errorMessage;

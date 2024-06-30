@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <fc-designer ref="designer" :key="lang" :config="config" :handle="handle" :locale="locale">
+        <fc-designer ref="designer" :key="lang" :config="config" :handle="handle" :locale="locale" :filedList="filedList">
             <template #handle>
                 <div class="handle">
                     <el-dropdown @command="e=>e()" style="margin-right: 10px;">
@@ -137,6 +137,20 @@ export default {
                     },
                 },
             ],
+            filedList: [
+             {
+              value: "sample_no",
+              label: "样品编号",
+             },
+             {
+               value: "sample_name",
+               label: "样品名称",
+             },
+             {
+               value: "sample_status",
+               label: "样品状态",
+             },
+           ],
         };
     },
     watch: {

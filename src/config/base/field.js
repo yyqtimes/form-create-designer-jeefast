@@ -1,7 +1,7 @@
 export default function field({t}) {
     return [
         {
-            type: 'FieldInput',
+            type: 'FieldSelect', //由FieldInput修改为FieldSelect
             field: 'field',
             value: '',
             title: t('form.field'),

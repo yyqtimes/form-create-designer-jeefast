@@ -68,9 +68,11 @@ export function makeTreeOptions(pre, config, level, data = []) {
 }
 
 export function makeOptionsRule(t, to) {
+    console.log('makeOptionsRule'+to)
     const options = [
         {'label': t('fetch.optionsType.struct'), 'value': 2},
         {'label': t('fetch.optionsType.fetch'), 'value': 1},
+        {'label': '数据字典', 'value': 3},
     ];
 
     const control = [
@@ -93,8 +95,25 @@ export function makeOptionsRule(t, to) {
                     type: 'TableOptions',
                     field: 'formCreate' + upper(to).replace('.', '>'),
                     props: {
-                        keyValue: 'label'
+                        keyValue: 'label',
+                        filterable: true
                     }
+                },
+            ],
+        },
+        {
+            value: 3,
+            rule: [
+                {
+                    type: "select",
+                    field: 'formCreate' + upper(to).replace('.', '>'),
+                    props: {
+                        size: 'small'
+                    },
+                    options: [
+                        {'label': '性别', 'value': 'sex'},
+                        {'label': '爱好', 'value': 'aihao'}
+                    ]
                 },
             ],
         }
