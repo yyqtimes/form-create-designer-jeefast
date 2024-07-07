@@ -29,7 +29,7 @@
 ## 安装
 
 ```shell
-npm install @form-create/designer
+npm install @yyqtimes/form-create-designer-jeefast
 ```
 
 ## 引入
