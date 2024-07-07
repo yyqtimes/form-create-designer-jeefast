@@ -17,6 +17,7 @@ import DragBox from './components/DragBox.vue';
 import Required from './components/Required.vue';
 import TableOptions from './components/TableOptions.vue';
 import TreeOptions from './components/TreeOptions.vue';
+import JfFetchDictConfig from './components/JfFetchDictConfig.vue';
 import {designerForm} from './utils/form';
 import FcEditor from '@form-create/component-wangeditor';
 import './style/index.css';
@@ -51,6 +52,7 @@ designerForm.component('FieldInput', FieldInput);
 designerForm.component('FieldSelect', FieldSelect);
 designerForm.component('FnConfig', FnConfig);
 designerForm.component('FcRow', Row);
+designerForm.component('JfFetchDictConfig', JfFetchDictConfig);
 addComponent('FcEditor', FcEditor);
 addComponent('FcTable', Table, TableView);
 

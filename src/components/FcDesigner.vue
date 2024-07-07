@@ -398,6 +398,11 @@ export default defineComponent({
         filedList: { //字段列表
             type: Array,
             default: () => [],
+        },
+          //字典信息配置
+        fetchDictConfig: {
+            type: Object,
+            default: () => ({}),
         }
     },
     provide() {
@@ -1140,10 +1145,12 @@ export default defineComponent({
                 }
             },
             propChange(field, value, _, fapi) {
+                console.log(`propChange field：${field} value：${value}`);   
                 methods.handleChange('props', field, value, _, fapi);
             },
             handleChange(key, field, value, _, fapi) {
                 if (data.activeRule && fapi[data.activeRule._fc_id] === data.activeRule) {
+                    debugger
                     methods.unWatchActiveRule();
                     const org = field;
                     if (field.indexOf('__') !== 0) {

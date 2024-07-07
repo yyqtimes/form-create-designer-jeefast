@@ -68,11 +68,10 @@ export function makeTreeOptions(pre, config, level, data = []) {
 }
 
 export function makeOptionsRule(t, to) {
-    console.log('makeOptionsRule'+to)
     const options = [
         {'label': t('fetch.optionsType.struct'), 'value': 2},
         {'label': t('fetch.optionsType.fetch'), 'value': 1},
-        {'label': '数据字典', 'value': 3},
+        {'label': t('fetch.optionsType.dict'), 'value': 3},
     ];
 
     const control = [
@@ -105,15 +104,11 @@ export function makeOptionsRule(t, to) {
             value: 3,
             rule: [
                 {
-                    type: "select",
-                    field: 'formCreate' + upper(to).replace('.', '>'),
+                    type: "JfFetchDictConfig",
+                    field: 'formCreateEffect>fetch',
                     props: {
-                        size: 'small'
+                        to
                     },
-                    options: [
-                        {'label': '性别', 'value': 'sex'},
-                        {'label': '爱好', 'value': 'aihao'}
-                    ]
                 },
             ],
         }

@@ -117,6 +117,7 @@ const ZhCn = {
         optionsType: {
             fetch: '远程数据',
             struct: '静态数据',
+            dict: '数据字典',
         }
     },
     designer: {

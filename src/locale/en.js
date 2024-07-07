@@ -117,6 +117,7 @@ const En = {
         optionsType: {
             fetch: 'Fetch',
             struct: 'Static',
+            dict: 'Dictionary',
         }
     },
     designer: {

@@ -3,6 +3,12 @@
         <img width="300" alt="FormCreate" src="https://static.form-create.com/file/img/info-logo2.png">
     </a>
 </p>
+## 二次开发说明
+
+在1.1.2版本的基础上增加了如下特性：
+
+1. 增加表字段属性，控件支持选择绑定字段
+2. radio、checkbox、select 支持选择数据字典
 
 **[帮助文档](https://view.form-create.com/) | [在线演示](https://form-create.com/designer?fr=github) | [FormCreate 文档](https://form-create.com/v2/guide/) | [🌈Vue3版本](https://github.com/xaboy/form-create-designer/tree/next)**
 
@@ -65,10 +71,6 @@ Vue.use(FcDesigner)
 ```html
 <fc-designer ref="designer"/>
 ```
-
-## 联系
-
-![http://static.form-create.com/file/img/support.jpg](http://static.form-create.com/file/img/support.jpg)
 
 ## License
 
