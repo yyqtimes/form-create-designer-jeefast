@@ -2,7 +2,6 @@
     <el-container class="_fc-designer" @dragenter="handleDragenter" @dragleave="handleDragleave" @drop="handleDrop">
         <el-main>
             <el-container style="height: 100%;" :key="locale && locale.name">
-                <!-- 左侧面板  -->
                 <el-aside class="_fc-l" width="266px">
                     <el-container style="height: 100%;">
                         <el-header height="40px" class="_fc-l-tabs">
@@ -84,7 +83,6 @@
                         </el-main>
                     </el-container>
                 </el-aside>
-                <!-- 中间拖拽区域  -->
                 <el-container class="_fc-m">
                     <el-header class="_fc-m-tools" height="45">
                         <div class="_fc-m-tools-l">
@@ -219,7 +217,6 @@
                         </div>
                     </el-main>
                 </el-container>
-                <!-- 右侧配置 -->
                 <el-aside class="_fc-r" width="320px" v-if="!config || config.showConfig !== false">
                     <el-container style="height: 100%;">
                         <el-header height="40px" class="_fc-r-tabs">
@@ -612,7 +609,6 @@ export default defineComponent({
                     submitBtn: false,
                 }
             },
-           
         });
 
         watch(() => data.preview.state, function (n) {
@@ -681,7 +677,6 @@ export default defineComponent({
                 unWatchActiveRule && unWatchActiveRule();
                 unWatchActiveRule = null;
             },
-            //拖拽区域控件点击事件
             watchActiveRule() {
                 methods.unWatchActiveRule();
                 unWatchActiveRule = watch(() => data.activeRule, function (n) {
@@ -692,7 +687,6 @@ export default defineComponent({
                 return reactive({children}).children;
             },
             addMenu(config) {
-  
                 if (!config.name || !config.list) return;
                 let flag = true;
                 data.menuList.forEach((v, i) => {
@@ -774,7 +768,6 @@ export default defineComponent({
                 methods.inputReset({});
             },
             inputReset(formData) {
-                console.log('inputReset')
                 data.inputForm.rule = designerForm.parseJson(methods.getJson());
                 data.inputForm.option.formData = formData || deepCopy(data.inputForm.data);
                 data.inputForm.key = uniqueId();
@@ -795,7 +788,6 @@ export default defineComponent({
                 return {root: parent, parent: rule};
             },
             updateName() {
-                console.log('updateName')
                 data.activeRule.name = 'ref_' + uniqueId();
             },
             makeDrag(group, tag, children, on, slot) {
@@ -980,7 +972,6 @@ export default defineComponent({
                 data.form.value = value;
             },
             loadRule(rules, pConfig, template) {
-                console.log("Loading rule")
                 const loadRule = [];
                 rules.forEach(rule => {
                     if (is.String(rule)) {
@@ -1145,12 +1136,10 @@ export default defineComponent({
                 }
             },
             propChange(field, value, _, fapi) {
-                console.log(`propChange field：${field} value：${value}`);   
                 methods.handleChange('props', field, value, _, fapi);
             },
             handleChange(key, field, value, _, fapi) {
                 if (data.activeRule && fapi[data.activeRule._fc_id] === data.activeRule) {
-                    debugger
                     methods.unWatchActiveRule();
                     const org = field;
                     if (field.indexOf('__') !== 0) {
@@ -1215,7 +1204,6 @@ export default defineComponent({
                 }
             },
             customActive(config) {
-                console.log('customActive')
                 data.baseForm.isShow = false;
                 data.propsForm.isShow = false;
                 data.eventShow = false;
@@ -1283,6 +1271,14 @@ export default defineComponent({
                     formCreateChild: '' + rule.children[0],
                     'formCreateWrap>labelWidth': ''
                 };
+                const appendConfigData = configRef.value.appendConfigData;
+                if (is.Function(appendConfigData)) {
+                    formData = {...formData, ...appendConfigData(rule)};
+                } else if (Array.isArray(appendConfigData)) {
+                    appendConfigData.forEach(v => {
+                        formData[v] = undefined;
+                    });
+                }
                 Object.keys(rule).forEach(k => {
                     if (['effect', 'config', 'payload', 'id', 'type', '_menu'].indexOf(k) < 0)
                         formData['formCreate' + upper(k)] = deepCopy(rule[k]);
@@ -1301,9 +1297,6 @@ export default defineComponent({
                         formData['formCreate' + upper(name) + '>' + k] = deepCopy(rule[name][k]);
                     });
                 });
-                if(is.Function(configRef.value.appendConfigData)){
-                    formData = {...formData, ...configRef.value.appendConfigData(rule)};
-                }
                 const configAttrs = rule._menu.attrs || {};
                 Object.keys(configAttrs).forEach(k => {
                     formData['__' + k] = configAttrs[k]({rule});
@@ -1354,7 +1347,6 @@ export default defineComponent({
                 return flag;
             },
             dragMenu({menu, children, index, slot}) {
-                console.log('dragMenu')
                 if (data.inputForm.state) {
                     return;
                 }
@@ -1374,7 +1366,6 @@ export default defineComponent({
                 methods.handleAddAfter({rule});
             },
             replaceField(rule) {
-                console.log('replaceField')
                 const flag = ['array', 'object'].indexOf(rule._menu.subForm) > -1;
                 let temp = methods.parseRule(deepCopy([rule]))[0];
                 if (flag) {
@@ -1389,7 +1380,6 @@ export default defineComponent({
                 return methods.loadRule(designerForm.parseJson(temp))[0];
             },
             batchReplaceField(json) {
-                console.log('batchReplaceField')
                 const regex = /"field"\s*:\s*"(\w[\w\d]+)"/g;
                 const matches = [];
                 json = json.replace(regex, (match, p1) => {
@@ -1400,7 +1390,6 @@ export default defineComponent({
                 return methods.batchReplaceUni(json);
             },
             batchReplaceUni(json) {
-                console.log('batchReplaceUni')
                 const regex = /"_fc_id"\s*:\s*"(\w[\w\d]+)"/g;
                 json = json.replace(regex, () => {
                     return `"_fc_id":"id_${uniqueId()}"`;
@@ -1455,7 +1444,6 @@ export default defineComponent({
                 return {...config, dragBtn: false, handleBtn: config.children ? ['addChild'] : false, ...slotConfig};
             },
             makeRule(config, _rule) {
-                console.log('makeRule')
                 const rule = _rule || config.rule({t});
                 rule._menu = markRaw(config);
                 if (!rule._fc_id) {
@@ -1620,6 +1608,9 @@ export default defineComponent({
                                 emit('copy', self.children[0]);
                                 const top = methods.getParent(self);
                                 const temp = methods.replaceField(self.children[0]);
+                                if(self.slot) {
+                                    temp.slot = self.slot;
+                                }
                                 top.root.children.splice(top.root.children.indexOf(top.parent) + 1, 0, temp);
                                 methods.handleCopyAfter({rule: self.children[0]});
                             },
