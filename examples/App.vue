@@ -132,6 +132,7 @@ export default {
       config: {
         fieldReadonly: false,
         showSaveBtn: true,
+        showPreViewBtn:true, //是否显示预览按钮
       },
       handle: [
         {
