@@ -63,8 +63,8 @@ export default defineComponent({
       let fetchOption = {
         action: `${this.fetchAction}/${this.dictType}`,
         method: "GET",
-        Headers: {
-          Authorization: this.authToken
+        headers: {
+          "Authorization": `${this.authToken}`
         },
         data: {},
         to: this.to || "options",

@@ -1,6 +1,6 @@
 {
     "name": "@yyqtimes/fcdesigner",
-    "version": "1.1.6",
+    "version": "1.1.11",
     "description": "好用的vue可视化表单设计器组件",
     "type": "module",
     "unpkg": "./dist/index.umd.js",
@@ -57,7 +57,7 @@
         "@form-create/utils": "^2.5.35",
         "codemirror": "5.60.0",
         "element-ui": "^2.15.2",
-        "vue": "^2.7.14",
+        "vue": "^2.7",
         "vuedraggable": "^2.24.3"
     },
     "devDependencies": {
