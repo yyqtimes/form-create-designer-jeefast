@@ -26,7 +26,7 @@ export default defineComponent({
     fetchAction() {
       return this.designer.fetchDictConfig.fetchAction;
     },
-    token(){
+    authToken(){
       return this.designer.fetchDictConfig.token;
     },
     t() {
@@ -64,7 +64,7 @@ export default defineComponent({
         action: `${this.fetchAction}/${this.dictType}`,
         method: "GET",
         Headers: {
-          Authorization: this.token,
+          Authorization: this.authToken
         },
         data: {},
         to: this.to || "options",
