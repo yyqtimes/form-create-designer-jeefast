@@ -1,6 +1,6 @@
 {
     "name": "@yyqtimes/fcdesigner",
-    "version": "1.1.5",
+    "version": "1.1.6",
     "description": "好用的vue可视化表单设计器组件",
     "type": "module",
     "unpkg": "./dist/index.umd.js",
